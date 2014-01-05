@@ -13,8 +13,8 @@ public class EnemyManagerScript : MonoBehaviour {
 
 	//Spawn frequency management
 	public float spawnProbability = 0.01f; //Probability of spawning on any iteration
-	public float maxEnemies = 100f; //Maximum number of enemies that can exist at once
-	private float enemyCount = 0; //Current number of enemies
+	public float maxEnemies = 25f; //Maximum number of enemies that can exist at once
+	public float enemyCount = 0; //Current number of enemies
 
 	//Random generator for enemy locations - creates a donut shape over many iterations
 	public static Vector2 GetRandomInDonut(float min, float max)
@@ -24,7 +24,7 @@ public class EnemyManagerScript : MonoBehaviour {
 		Vector3 point3 = ray.GetPoint( Random.Range(min, max) );
 		return new Vector2(point3.x,point3.y);
 	}
-	
+
 	//Update is called once per frame
 	void Update () {
 		//If we haven't hit the max enemy count and we randomly decide to spawn an enemy
@@ -35,7 +35,13 @@ public class EnemyManagerScript : MonoBehaviour {
 			//Set the enemy target
 			EnemyAI enemyCom = enemy.GetComponent<EnemyAI>();
 			enemyCom.target = target;
+			enemyCom.enemyManager = gameObject;
 			enemyCount++;
 		}
+	}
+
+	public void reportDeath()
+	{
+		enemyCount--;
 	}
 }

@@ -19,7 +19,10 @@ public class CharacterController : MonoBehaviour {
 
 	//External objects
 	public Camera dependentCamera; //Camera for world transform
-	
+
+	//Player properties
+	public float damage = 0.0f;
+
 	//Update is called once per frame
 	void Update () {
 		//Get current mouse position and transform rleative to object and camera
@@ -51,8 +54,13 @@ public class CharacterController : MonoBehaviour {
 		//Fire bullets
 		if(Input.GetKey (fireKey))
 		{
-			GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
-			bullet.rigidbody2D.AddForce(new Vector2(Mathf.Cos ((transform.eulerAngles.z+90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z+90)*Mathf.Deg2Rad)) * bulletSpeed);
+			Vector2 direction = new Vector2(Mathf.Cos ((transform.eulerAngles.z+90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z+90)*Mathf.Deg2Rad));
+			GameObject bullet = Instantiate(bulletPrefab, transform.position+new Vector3(direction.x,direction.y,0f), transform.rotation) as GameObject;
+			bullet.rigidbody2D.AddForce(direction * bulletSpeed);
 		}
+	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		damage++;
 	}
 }

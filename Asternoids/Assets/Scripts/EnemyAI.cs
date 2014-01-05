@@ -9,6 +9,9 @@ public class EnemyAI : MonoBehaviour {
 	//AI properties
 	public GameObject target; //Target the enemy ship chases
 
+	//Dependent objects
+	public GameObject enemyManager; //For reporting killed ships
+
 	// Update is called once per frame
 	void Update () {
 		//Calculate a direction for the target
@@ -22,5 +25,15 @@ public class EnemyAI : MonoBehaviour {
 		//Limit velocity to maximum
 		if(rigidbody2D.velocity.magnitude>maxSpeed)
 			rigidbody2D.velocity *= (1 - (rigidbody2D.velocity.magnitude-maxSpeed)/rigidbody2D.velocity.magnitude);
+	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet")
+		{
+			EnemyManagerScript enemyCom = enemyManager.GetComponent<EnemyManagerScript>();
+			enemyCom.reportDeath();
+			DestroyObject (collision.gameObject);
+			DestroyObject (gameObject);
+		}
 	}
 }

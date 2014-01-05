@@ -11,4 +11,8 @@ public class BulletManagerScript : MonoBehaviour {
 		if(transform.position.magnitude > destroyDistance)
 			DestroyObject (gameObject);
 	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		DestroyObject (gameObject);
+	}
 }
