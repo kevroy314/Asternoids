@@ -39,7 +39,7 @@ public class CharacterController : MonoBehaviour {
 			rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z+90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z+90)*Mathf.Deg2Rad))*acceleration);
 		else if(Input.GetKey (reverseKey))
 			rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z-90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z-90)*Mathf.Deg2Rad))*acceleration);
-		else if(Input.GetKey (leftKey))
+		if(Input.GetKey (leftKey))
 			rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z-180)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z-180)*Mathf.Deg2Rad))*acceleration);
 		else if(Input.GetKey (rightKey))
 			rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z)*Mathf.Deg2Rad))*acceleration);
