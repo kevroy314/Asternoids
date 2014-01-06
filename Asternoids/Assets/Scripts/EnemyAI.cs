@@ -32,7 +32,6 @@ public class EnemyAI : MonoBehaviour {
 		{
 			EnemyManagerScript enemyCom = enemyManager.GetComponent<EnemyManagerScript>();
 			enemyCom.reportDeath();
-			DestroyObject (collision.gameObject);
 			DestroyObject (gameObject);
 		}
 	}

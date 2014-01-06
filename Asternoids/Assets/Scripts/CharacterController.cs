@@ -11,7 +11,7 @@ public class CharacterController : MonoBehaviour {
 
 	//Bullet properties
 	public GameObject bulletPrefab; //Prefabricated 2D rigid body for bullet
-	public float bulletSpeed = 1000f; //Speed the bullets travel
+	public float bulletSpeed = 50f; //Speed the bullets travel
 
 	//Ship performance properties
 	public float acceleration = 5f; //Rate of acceleration
@@ -52,11 +52,11 @@ public class CharacterController : MonoBehaviour {
 			rigidbody2D.velocity *= (1 - (rigidbody2D.velocity.magnitude-maxSpeed)/rigidbody2D.velocity.magnitude);
 
 		//Fire bullets
-		if(Input.GetKey (fireKey))
+		if(Input.GetKey (fireKey)||Input.GetMouseButton(0))
 		{
 			Vector2 direction = new Vector2(Mathf.Cos ((transform.eulerAngles.z+90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z+90)*Mathf.Deg2Rad));
 			GameObject bullet = Instantiate(bulletPrefab, transform.position+new Vector3(direction.x,direction.y,0f), transform.rotation) as GameObject;
-			bullet.rigidbody2D.AddForce(direction * bulletSpeed);
+			bullet.rigidbody2D.velocity = direction * bulletSpeed;
 		}
 	}
 

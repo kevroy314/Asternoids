@@ -7,6 +7,7 @@ public class BulletManagerScript : MonoBehaviour {
 
 	//Update is called once per frame
 	void Update () {
+		transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(rigidbody2D.velocity.y, rigidbody2D.velocity.x) * Mathf.Rad2Deg - 90f));
 		//Check boundry conditions and destroy if exceeded
 		if(transform.position.magnitude > destroyDistance)
 			DestroyObject (gameObject);

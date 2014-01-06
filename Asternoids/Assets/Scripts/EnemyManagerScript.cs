@@ -31,7 +31,7 @@ public class EnemyManagerScript : MonoBehaviour {
 		if(Random.value < spawnProbability && enemyCount < maxEnemies)
 		{
 			//Generate enemy with random spawn point and orientation
-			GameObject enemy = Instantiate(enemyPrefab, GetRandomInDonut(innerSpawnRadius,outerSpawnRadius), Quaternion.Euler(new Vector3(0, 0, Random.Range (0f,360f)))) as GameObject;
+			GameObject enemy = Instantiate(enemyPrefab, GetRandomInDonut(innerSpawnRadius,outerSpawnRadius)+spawnCenter, Quaternion.Euler(new Vector3(0, 0, Random.Range (0f,360f)))) as GameObject;
 			//Set the enemy target
 			EnemyAI enemyCom = enemy.GetComponent<EnemyAI>();
 			enemyCom.target = target;
