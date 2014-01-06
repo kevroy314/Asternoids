@@ -12,6 +12,10 @@ public class EnemyAI : MonoBehaviour {
 	//Dependent objects
 	public GameObject enemyManager; //For reporting killed ships
 
+	void Start() {
+		animation.Play ("ShipIdle");
+	}
+
 	// Update is called once per frame
 	void Update () {
 		//Calculate a direction for the target
@@ -32,6 +36,10 @@ public class EnemyAI : MonoBehaviour {
 		{
 			EnemyManagerScript enemyCom = enemyManager.GetComponent<EnemyManagerScript>();
 			enemyCom.reportDeath();
+			animation.Play ("ShipDeath");
+		}
+		if(!animation.isPlaying)
+		{
 			DestroyObject (gameObject);
 		}
 	}
