@@ -5,7 +5,7 @@ public class EnemyManagerScript : MonoBehaviour {
 	//Spawn location properties
 	public float innerSpawnRadius = 10f; //Distance from center where spawns start
 	public float outerSpawnRadius = 100f; //Distance from center when spawns stop
-	public Vector2 spawnCenter = new Vector2(0f,0f); //Center of spawn region
+	//public Vector2 spawnCenter = new Vector2(0f,0f); //Center of spawn region
 
 	//External object dependencies
 	public GameObject enemyPrefab; //Enemy prefab
@@ -31,8 +31,9 @@ public class EnemyManagerScript : MonoBehaviour {
 		if(Random.value < spawnProbability && enemyCount < maxEnemies)
 		{
 			//Generate enemy with random spawn point and orientation
-			GameObject enemy = Instantiate(enemyPrefab, GetRandomInDonut(innerSpawnRadius,outerSpawnRadius)+spawnCenter, Quaternion.Euler(new Vector3(0, 0, Random.Range (0f,360f)))) as GameObject;
+			GameObject enemy = Instantiate(enemyPrefab, GetRandomInDonut(innerSpawnRadius,outerSpawnRadius)+new Vector2(transform.position.x,transform.position.y), Quaternion.Euler(new Vector3(0, 0, Random.Range (0f,360f)))) as GameObject;
 			//Set the enemy target
+			enemy.transform.parent = transform;
 			EnemyAI enemyCom = enemy.GetComponent<EnemyAI>();
 			enemyCom.target = target;
 			enemyCom.enemyManager = gameObject;
@@ -43,5 +44,6 @@ public class EnemyManagerScript : MonoBehaviour {
 	public void reportDeath()
 	{
 		enemyCount--;
+		audio.Play ();
 	}
 }

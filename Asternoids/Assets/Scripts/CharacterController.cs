@@ -39,13 +39,17 @@ public class CharacterController : MonoBehaviour {
 
 		//Process movement
 		if(Input.GetKey (forwardKey))
-			rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z+90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z+90)*Mathf.Deg2Rad))*acceleration);
+			rigidbody2D.AddForce (new Vector2(0,acceleration));
+			//rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z+90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z+90)*Mathf.Deg2Rad))*acceleration);
 		else if(Input.GetKey (reverseKey))
-			rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z-90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z-90)*Mathf.Deg2Rad))*acceleration);
+			rigidbody2D.AddForce (new Vector2(0,-acceleration));
+			//rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z-90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z-90)*Mathf.Deg2Rad))*acceleration);
 		if(Input.GetKey (leftKey))
-			rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z-180)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z-180)*Mathf.Deg2Rad))*acceleration);
+			rigidbody2D.AddForce (new Vector2(-acceleration,0));
+			//rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z-180)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z-180)*Mathf.Deg2Rad))*acceleration);
 		else if(Input.GetKey (rightKey))
-			rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z)*Mathf.Deg2Rad))*acceleration);
+			rigidbody2D.AddForce (new Vector2(acceleration,0));
+			//rigidbody2D.AddForce (new Vector2(Mathf.Cos ((transform.eulerAngles.z)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z)*Mathf.Deg2Rad))*acceleration);
 
 		//Set maximum velocity magnitude
 		if(rigidbody2D.velocity.magnitude>maxSpeed)
@@ -54,8 +58,10 @@ public class CharacterController : MonoBehaviour {
 		//Fire bullets
 		if(Input.GetKey (fireKey)||Input.GetMouseButton(0))
 		{
+			audio.Play ();
 			Vector2 direction = new Vector2(Mathf.Cos ((transform.eulerAngles.z+90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z+90)*Mathf.Deg2Rad));
 			GameObject bullet = Instantiate(bulletPrefab, transform.position+new Vector3(direction.x,direction.y,0f), transform.rotation) as GameObject;
+			//bullet.transform.parent = transform;
 			bullet.rigidbody2D.velocity = direction * bulletSpeed;
 		}
 	}
