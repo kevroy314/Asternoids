@@ -33,7 +33,7 @@ public class EnemyManagerScript : MonoBehaviour {
 			//Generate enemy with random spawn point and orientation
 			GameObject enemy = Instantiate(enemyPrefab, GetRandomInDonut(innerSpawnRadius,outerSpawnRadius)+new Vector2(transform.position.x,transform.position.y), Quaternion.Euler(new Vector3(0, 0, Random.Range (0f,360f)))) as GameObject;
 			//Set the enemy target
-			enemy.transform.parent = transform;
+			//enemy.transform.parent = transform;
 			EnemyAI enemyCom = enemy.GetComponent<EnemyAI>();
 			enemyCom.target = target;
 			enemyCom.enemyManager = gameObject;
