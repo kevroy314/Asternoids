@@ -11,13 +11,43 @@ Platform assembly: C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Game 0_
 Loading C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Game 0_0_2_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Game 0_0_2_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Game 0_0_2_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.037 seconds
+- Completed reload, in  0.051 seconds
 desktop: 1920x1080 60Hz; virtual: 3200x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-HandleD3DDeviceLost
-  HandleD3DDeviceLost: needs reset, doing it
-FullResetD3DDevice
-ResetD3DDevice
-dev->Reset
-D3Dwindow device not lost anymore
+HDR RenderTexture format is not supported on this platform. This camera will render without HDR buffers.
+ 
+(Filename:  Line: 2239)
+
+UnloadTime: 27.700998 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 144.
+Total: 0.752828 ms (FindLiveObjects: 0.006037 ms CreateObjectMapping: 0.006338 ms MarkObjects: 0.058861 ms  DeleteObjects: 0.359510 ms)
+
+UnloadTime: 27.773140 ms
+HDR RenderTexture format is not supported on this platform. This camera will render without HDR buffers.
+ 
+(Filename:  Line: 2239)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 149.
+Total: 1.397290 ms (FindLiveObjects: 0.011470 ms CreateObjectMapping: 0.011772 ms MarkObjects: 0.093877 ms  DeleteObjects: 0.587411 ms)
+
+UnloadTime: 26.424147 ms
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 144.
+Total: 0.778787 ms (FindLiveObjects: 0.005735 ms CreateObjectMapping: 0.006942 ms MarkObjects: 0.061880 ms  DeleteObjects: 0.396034 ms)
+
+UnloadTime: 30.267374 ms
+HDR RenderTexture format is not supported on this platform. This camera will render without HDR buffers.
+ 
+(Filename:  Line: 2239)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 149.
+Total: 1.308242 ms (FindLiveObjects: 0.011772 ms CreateObjectMapping: 0.011772 ms MarkObjects: 0.086330 ms  DeleteObjects: 0.574733 ms)
+

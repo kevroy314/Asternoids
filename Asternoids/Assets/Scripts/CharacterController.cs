@@ -64,6 +64,9 @@ public class CharacterController : MonoBehaviour {
 			//bullet.transform.parent = transform;
 			bullet.rigidbody2D.velocity = direction * bulletSpeed;
 		}
+
+		if(Input.GetKey (KeyCode.Escape))
+			Application.LoadLevel ("Main Menu");
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {

@@ -44,6 +44,6 @@ public class EnemyManagerScript : MonoBehaviour {
 	public void reportDeath()
 	{
 		enemyCount--;
-		audio.Play ();
+		//audio.Play ();
 	}
 }
