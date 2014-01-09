@@ -9,11 +9,13 @@ public class EnemyAI : MonoBehaviour {
 	//AI properties
 	public GameObject target; //Target the enemy ship chases
 
+	private Animator anim;
+
 	//Dependent objects
 	public GameObject enemyManager; //For reporting killed ships
 
 	void Start() {
-		//animation.Play ("ShipIdle");
+		anim = GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -29,18 +31,22 @@ public class EnemyAI : MonoBehaviour {
 		//Limit velocity to maximum
 		if(rigidbody2D.velocity.magnitude>maxSpeed)
 			rigidbody2D.velocity *= (1 - (rigidbody2D.velocity.magnitude-maxSpeed)/rigidbody2D.velocity.magnitude);
-	}
-
-	void OnCollisionEnter2D(Collision2D collision) {
-		if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet")
+		if(anim.GetCurrentAnimatorStateInfo (0).IsTag ("DestroyObject"))
 		{
 			EnemyManagerScript enemyCom = enemyManager.GetComponent<EnemyManagerScript>();
 			enemyCom.reportDeath();
 			DestroyObject (gameObject);
 		}
-		//if(!animation.isPlaying)
-		//{
-			//DestroyObject (gameObject);
-		//}
+
+	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet")
+		{
+			tag = "Untagged";
+			anim.SetBool("ShipHasDied",true);
+			rigidbody2D.isKinematic = true;
+			audio.Play ();
+		}
 	}
 }

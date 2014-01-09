@@ -13,7 +13,7 @@ public class EnemyManagerScript : MonoBehaviour {
 
 	//Spawn frequency management
 	public float spawnProbability = 0.01f; //Probability of spawning on any iteration
-	public float maxEnemies = 25f; //Maximum number of enemies that can exist at once
+	public float maxEnemies; //Maximum number of enemies that can exist at once
 	public float enemyCount = 0; //Current number of enemies
 
 	//Random generator for enemy locations - creates a donut shape over many iterations
@@ -33,6 +33,7 @@ public class EnemyManagerScript : MonoBehaviour {
 			//Generate enemy with random spawn point and orientation
 			GameObject enemy = Instantiate(enemyPrefab, GetRandomInDonut(innerSpawnRadius,outerSpawnRadius)+new Vector2(transform.position.x,transform.position.y), Quaternion.Euler(new Vector3(0, 0, Random.Range (0f,360f)))) as GameObject;
 			//Set the enemy target
+			enemy.rigidbody2D.AddForce (new Vector2(1f,1f));
 			//enemy.transform.parent = transform;
 			EnemyAI enemyCom = enemy.GetComponent<EnemyAI>();
 			enemyCom.target = target;
