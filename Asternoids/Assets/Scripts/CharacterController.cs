@@ -12,7 +12,10 @@ public class CharacterController : MonoBehaviour {
 	//Bullet properties
 	public GameObject bulletPrefab; //Prefabricated 2D rigid body for bullet
 	public float bulletSpeed = 50f; //Speed the bullets travel
-
+	public float accuracy = 0.9f; //Accuracy is the percentage potential random offset from the intended direction of fire
+	public float maxAccuracyOffset = 0.1f;
+	private float accuracyFactor; //Accuracy factor is precomputed for efficiency
+	private float accuracyOffset;
 	//Ship performance properties
 	public float acceleration = 5f; //Rate of acceleration
 	public float maxSpeed = 10f; //Maximum movement speed
@@ -22,6 +25,11 @@ public class CharacterController : MonoBehaviour {
 
 	//Player properties
 	public float damage = 0.0f;
+
+	void Start() {
+		accuracyFactor = 360*(1-accuracy);
+		accuracyOffset = 0f;
+	}
 
 	//Update is called once per frame
 	void Update () {
@@ -59,7 +67,12 @@ public class CharacterController : MonoBehaviour {
 		if(Input.GetKey (fireKey)||Input.GetMouseButton(0))
 		{
 			audio.Play ();
-			Vector2 direction = new Vector2(Mathf.Cos ((transform.eulerAngles.z+90)*Mathf.Deg2Rad), Mathf.Sin ((transform.eulerAngles.z+90)*Mathf.Deg2Rad));
+			float bulletAngle = (transform.eulerAngles.z+90);
+			accuracyOffset += (Random.value-0.5f)*accuracyFactor;
+			if(accuracyOffset>maxAccuracyOffset) accuracyOffset = maxAccuracyOffset;
+			if(accuracyOffset<-maxAccuracyOffset) accuracyOffset = -maxAccuracyOffset;
+			bulletAngle += accuracyOffset;
+			Vector2 direction = new Vector2(Mathf.Cos (bulletAngle*Mathf.Deg2Rad), Mathf.Sin (bulletAngle*Mathf.Deg2Rad));
 			GameObject bullet = Instantiate(bulletPrefab, transform.position+new Vector3(direction.x,direction.y,0f), transform.rotation) as GameObject;
 			//bullet.transform.parent = transform;
 			bullet.rigidbody2D.velocity = direction * bulletSpeed;

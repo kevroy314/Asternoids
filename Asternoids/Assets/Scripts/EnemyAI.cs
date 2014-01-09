@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
-		if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bullet")
+		if(collision.gameObject.tag != "Planet")
 		{
 			tag = "Untagged";
 			anim.SetBool("ShipHasDied",true);
