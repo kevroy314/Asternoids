@@ -21,7 +21,9 @@ public class GravitySourceScript : MonoBehaviour {
 			{
 				float distance = Vector3.Distance (objs[j].transform.position,transform.position);
 				if(distance < maxGravDist)
+				try{
 					objs[j].rigidbody2D.AddForce ((transform.position-objs[j].transform.position).normalized * (1.0f - distance / maxGravDist) * maxGravity);
+				}catch(MissingComponentException){};
 			}
 		}
 	}

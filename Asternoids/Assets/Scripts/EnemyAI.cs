@@ -14,6 +14,8 @@ public class EnemyAI : MonoBehaviour {
 	//Dependent objects
 	public GameObject enemyManager; //For reporting killed ships
 
+	public float hp = 100f;
+
 	void Start() {
 		anim = GetComponent<Animator>();
 	}
@@ -37,16 +39,28 @@ public class EnemyAI : MonoBehaviour {
 			enemyCom.reportDeath();
 			DestroyObject (gameObject);
 		}
-
+		if(anim.GetCurrentAnimatorStateInfo (0).IsTag ("ResetShipHit"))
+		{
+			anim.SetBool("ShipHit",false);
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
+		float damage = float.MaxValue;
+		BulletManagerScript bullet = collision.gameObject.GetComponent<BulletManagerScript>();
+		if(bullet!=null)
+			damage = bullet.damage;
 		if(collision.gameObject.tag != "Planet")
 		{
-			tag = "Untagged";
-			anim.SetBool("ShipHasDied",true);
-			rigidbody2D.isKinematic = true;
-			audio.Play ();
+			anim.SetBool("ShipHit",true);
+			hp-=damage;
+			if(hp<=0)
+			{
+				anim.SetBool("ShipHasDied",true);
+				tag = "Untagged";
+				rigidbody2D.isKinematic = true;
+				audio.Play ();
+			}
 		}
 	}
 }
