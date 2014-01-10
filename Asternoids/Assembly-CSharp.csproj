@@ -46,15 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MenuScript.cs" />
-     <Compile Include="Assets\PlayerAI.cs" />
      <Compile Include="Assets\Scripts\BulletManagerScript.cs" />
      <Compile Include="Assets\Scripts\CharacterController.cs" />
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\EnemyManagerScript.cs" />
      <Compile Include="Assets\Scripts\FollowPlayerScript.cs" />
      <Compile Include="Assets\Scripts\GravitySourceScript.cs" />
-     <Compile Include="Assets\StarfieldManager.cs" />
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerAI.cs" />
+     <Compile Include="Assets\Scripts\StarfieldManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
