@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* 
+ * Object is responsible for camera movement
+ */
 public class FollowPlayerScript : MonoBehaviour {
-	//Camera target
+
+	//Public variables
 	public Transform target; //Player for camera to follow
 	
 	//Camera movement properties
@@ -16,10 +20,10 @@ public class FollowPlayerScript : MonoBehaviour {
 
 	//Update is called once per frame
 	void Update () {
-		//Camera follow
+		//Camera follow via linear interpolation
 		transform.position = Vector3.Lerp (transform.position, target.TransformPoint(0, height, -1f), Time.deltaTime * damping);
 
-		//Camera zoom
+		//Camera zoom (should also handle touch/pinch zoom). Only works with orthographic camera
 		if( Input.GetAxis("Mouse ScrollWheel") > 0 && camera.orthographicSize > cameraMin)
 		{
 			camera.orthographicSize -= camera.orthographicSize*cameraZoomGrowthRate;
