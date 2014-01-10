@@ -8,14 +8,14 @@ public class EnemyManagerScript : MonoBehaviour {
 
 	//Spawn location properties
 	public float innerSpawnRadius = 10f; //Distance from center where spawns start
-	public float outerSpawnRadius = 100f; //Distance from center when spawns stop
+	public float outerSpawnRadius = 15f; //Distance from center when spawns stop
 
 	//External object dependencies
 	public GameObject enemyPrefab; //Enemy prefab
 	public GameObject target; //Target for enemies to chase
 
 	//Spawn frequency management
-	public float spawnProbability = 0.01f; //Probability of spawning on any iteration
+	public float spawnProbability = 0.5f; //Probability of spawning on any iteration
 	public float maxEnemies; //Maximum number of enemies that can exist at once
 	public float enemyCount = 0; //Current number of enemies
 

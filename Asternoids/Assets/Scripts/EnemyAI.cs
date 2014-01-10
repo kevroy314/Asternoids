@@ -9,9 +9,9 @@ public class EnemyAI : MonoBehaviour {
 	//Public variables
 
 	//Enemy performance
-	public float acceleration = 3f; //How quickly the enemy can acceleration/change directions
-	public float maxSpeed = 5f; //Maximum enemy speed
-	public float hp = 100f; //Enemy health
+	public float acceleration = 5f; //How quickly the enemy can acceleration/change directions
+	public float maxSpeed = 7f; //Maximum enemy speed
+	public float hp = 50f; //Enemy health
 
 	//Dependent objects
 	public GameObject target; //Target the enemy ship chases

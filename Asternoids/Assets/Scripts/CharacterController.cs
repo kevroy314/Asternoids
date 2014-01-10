@@ -16,9 +16,10 @@ public class CharacterController : MonoBehaviour {
 
 	//Bullet properties
 	public GameObject bulletPrefab; //Prefabricated 2D rigid body for bullet
-	public float bulletSpeed = 50f; //Speed the bullets travel
-	public float accuracy = 0.9f; //Accuracy is the percentage potential random offset from the intended direction of fire
-	public float maxAccuracyOffset = 0.1f; //The maximum amount off of center that the bullet can fire
+	public float bulletSpeed = 20f; //Speed the bullets travel
+	public float accuracy = 0.95f; //Accuracy is the percentage potential random offset from the intended direction of fire
+	public float maxAccuracyOffset = 10f; //The maximum amount off of center that the bullet can fire
+	public float weaponKick = 0.2f; //This force is applied every time the character fires.
 
 	//Ship properties
 	public float acceleration = 5f; //Rate of acceleration
@@ -116,8 +117,11 @@ public class CharacterController : MonoBehaviour {
 			Vector2 direction = new Vector2(Mathf.Cos (bulletAngle*Mathf.Deg2Rad), Mathf.Sin (bulletAngle*Mathf.Deg2Rad));
 
 			//Create a bullet and set it's speed
-			GameObject bullet = Instantiate(bulletPrefab, transform.position+new Vector3(direction.x,direction.y,0f), transform.rotation) as GameObject;
+			GameObject bullet = Instantiate(bulletPrefab, transform.position+new Vector3(direction.x,direction.y,0f)*transform.localScale.x, transform.rotation) as GameObject;
 			bullet.rigidbody2D.velocity = direction * bulletSpeed;
+
+			//Apply weapon kick to player
+			rigidbody2D.AddForce (new Vector2(-direction.x*weaponKick,-direction.y*weaponKick));
 		}
 
 		//On escape, go to main menu

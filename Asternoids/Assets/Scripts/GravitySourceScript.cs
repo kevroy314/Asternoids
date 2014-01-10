@@ -7,8 +7,8 @@ using System.Collections;
 public class GravitySourceScript : MonoBehaviour {
 
 	//Public variables
-	public float maxGravDist = 4.0f; //Maximum distance the gravity reaches
-	public float maxGravity = 35f; //Maximum amount of force the gravity can exhert
+	public float maxGravDist = 200f; //Maximum distance the gravity reaches
+	public float maxGravity = 3f; //Maximum amount of force the gravity can exhert
 	public string[] tagsToEffect = {"Player","Enemy","Bullet"}; //Tags which when present on an object cause that object to be effected by gravity
 
 	//Initial position of the object (used for making sure the object is collidable but never moves

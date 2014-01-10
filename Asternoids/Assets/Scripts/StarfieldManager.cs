@@ -12,7 +12,7 @@ public class StarfieldManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		for(int i = 0; i < 5000; i++)
+		for(int i = 0; i < numberOfStars; i++)
 		{
 			//Generate star with random spawn point and orientation
 			GameObject star = Instantiate(starPrefabs[Random.Range (0,starPrefabs.Length)], Random.insideUnitSphere*200, Quaternion.Euler(Vector3.zero)) as GameObject;
