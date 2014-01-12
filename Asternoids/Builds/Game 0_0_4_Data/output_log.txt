@@ -1,0 +1,37 @@
+Initialize engine version: 4.3.2f1 (0517a5ae8669)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [aticfx64.dll 8.17.10.1191]
+    Renderer: ATI Radeon HD 5700 Series
+    Vendor:   ATI
+    VRAM:     1013 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=1 INTZ=1 RAWZ=0 NULL=1 RESZ=1 SlowINTZ=1
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Builds\Game 0_0_4_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Builds\Game 0_0_4_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Builds\Game 0_0_4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Builds\Game 0_0_4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+- Completed reload, in  0.040 seconds
+desktop: 1920x1080 60Hz; virtual: 3200x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+HDR RenderTexture format is not supported on this platform. This camera will render without HDR buffers.
+ 
+(Filename:  Line: 2239)
+
+UnloadTime: 45.205173 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 190.
+Total: 1.157613 ms (FindLiveObjects: 0.006037 ms CreateObjectMapping: 0.006037 ms MarkObjects: 0.055239 ms  DeleteObjects: 0.485986 ms)
+
+UnloadTime: 26.793537 ms
+HDR RenderTexture format is not supported on this platform. This camera will render without HDR buffers.
+ 
+(Filename:  Line: 2239)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 186.
+Total: 1.249075 ms (FindLiveObjects: 0.009055 ms CreateObjectMapping: 0.008150 ms MarkObjects: 0.074859 ms  DeleteObjects: 0.369772 ms)
+

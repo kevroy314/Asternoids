@@ -13,6 +13,14 @@ public class EnemyAI : MonoBehaviour {
 	public float maxSpeed = 7f; //Maximum enemy speed
 	public float hp = 50f; //Enemy health
 
+	//Bullet properties
+	public GameObject bulletPrefab; //Prefabricated 2D rigid body for bullet
+	public float bulletSpeed = 20f; //Speed the bullets travel
+	public float accuracy = 0.95f; //Accuracy is the percentage potential random offset from the intended direction of fire
+	public float maxAccuracyOffset = 10f; //The maximum amount off of center that the bullet can fire
+	public float weaponKick = 0.2f; //This force is applied every time the character fires.
+	public float fireProbability = 0.3f;
+
 	//Dependent objects
 	public GameObject target; //Target the enemy ship chases
 	public GameObject enemyManager; //For reporting killed ships
@@ -20,8 +28,15 @@ public class EnemyAI : MonoBehaviour {
 	//Private variables
 	private Animator anim; //Animator for monitoring animation state
 
+	//Private Bullet properties
+	private float accuracyFactor; //Accuracy factor is precomputed for efficiency
+	private float accuracyOffset; //Accuracy offset is persistent between shots and determines the direction the weapon is pointed
+
 	//Runs when object starts
 	void Start() {
+		//Precompute accuracy information based on input variables
+		accuracyFactor = 360*(1-accuracy);
+		accuracyOffset = 0f;
 		//Get animator component for monitoring animation state
 		anim = GetComponent<Animator>();
 	}
@@ -51,6 +66,31 @@ public class EnemyAI : MonoBehaviour {
 
 			//Destroy the object
 			DestroyObject (gameObject);
+
+
+		}
+
+		//Fire bullets
+		if(Random.value < fireProbability)
+		{
+			//Determine the angle of the bullet
+			float bulletAngle = (transform.eulerAngles.z+90);
+			
+			//Change the accuracy offset to determine the new direction of fire and bound it appropriately
+			accuracyOffset += (Random.value-0.5f)*accuracyFactor;
+			if(accuracyOffset>maxAccuracyOffset) accuracyOffset = maxAccuracyOffset;
+			if(accuracyOffset<-maxAccuracyOffset) accuracyOffset = -maxAccuracyOffset;
+			
+			//Generate the actual angle of fire
+			bulletAngle += accuracyOffset;
+			direction = new Vector2(Mathf.Cos (bulletAngle*Mathf.Deg2Rad), Mathf.Sin (bulletAngle*Mathf.Deg2Rad));
+			
+			//Create a bullet and set it's speed
+			GameObject bullet = Instantiate(bulletPrefab, transform.position+new Vector3(direction.x,direction.y,0f)*transform.localScale.x, transform.rotation) as GameObject;
+			bullet.rigidbody2D.velocity = direction * bulletSpeed;
+			
+			//Apply weapon kick to player
+			rigidbody2D.AddForce (new Vector2(-direction.x*weaponKick,-direction.y*weaponKick));
 		}
 
 		//Check if the enemy hit animation is complete and reset it
@@ -69,8 +109,10 @@ public class EnemyAI : MonoBehaviour {
 		if(bullet!=null)
 			damage = bullet.damage;
 
+		string objectTag = collision.gameObject.tag;
+
 		//If the object is one with which we should apply damage on collision
-		if(collision.gameObject.tag != "Planet")
+		if(objectTag != "Planet" && objectTag != "EnemyBullet")
 		{
 			//Trigger the hit animation
 			anim.SetBool("ShipHit",true);

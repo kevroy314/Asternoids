@@ -31,6 +31,7 @@ public class CharacterController : MonoBehaviour {
 
 	//Private variables
 	private Animator anim;
+	private FollowPlayerScript cameraScript; //Script for asking the camera to shake
 
 	//Private Bullet properties
 	private float accuracyFactor; //Accuracy factor is precomputed for efficiency
@@ -43,6 +44,7 @@ public class CharacterController : MonoBehaviour {
 		accuracyOffset = 0f;
 		//Get animator for animation state monitoring
 		anim = gameObject.GetComponent <Animator>();
+		cameraScript = dependentCamera.GetComponent<FollowPlayerScript> ();
 	}
 
 	//Update is called once per frame
@@ -133,5 +135,6 @@ public class CharacterController : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision) {
 		//Add damage on any collision
 		damage++;
+		cameraScript.ShakeCamera (0.5f);
 	}
 }
