@@ -11,7 +11,7 @@ Platform assembly: C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Builds\
 Loading C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Builds\Game 0_0_4_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Builds\Game 0_0_4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\admin\Documents\GitHub\Asternoids\Asternoids\Builds\Game 0_0_4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.040 seconds
+- Completed reload, in  0.037 seconds
 desktop: 1920x1080 60Hz; virtual: 3200x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -19,19 +19,9 @@ HDR RenderTexture format is not supported on this platform. This camera will ren
  
 (Filename:  Line: 2239)
 
-UnloadTime: 45.205173 ms
+UnloadTime: 23.367487 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 190.
-Total: 1.157613 ms (FindLiveObjects: 0.006037 ms CreateObjectMapping: 0.006037 ms MarkObjects: 0.055239 ms  DeleteObjects: 0.485986 ms)
-
-UnloadTime: 26.793537 ms
-HDR RenderTexture format is not supported on this platform. This camera will render without HDR buffers.
- 
-(Filename:  Line: 2239)
-
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 186.
-Total: 1.249075 ms (FindLiveObjects: 0.009055 ms CreateObjectMapping: 0.008150 ms MarkObjects: 0.074859 ms  DeleteObjects: 0.369772 ms)
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 192.
+Total: 1.078527 ms (FindLiveObjects: 0.006037 ms CreateObjectMapping: 0.006037 ms MarkObjects: 0.060672 ms  DeleteObjects: 0.392411 ms)
 

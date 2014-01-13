@@ -18,6 +18,13 @@ public class EnemyManagerScript : MonoBehaviour {
 	public float spawnProbability = 0.5f; //Probability of spawning on any iteration
 	public float maxEnemies; //Maximum number of enemies that can exist at once
 	public float enemyCount = 0; //Current number of enemies
+	public float totalEnemiesToSpawn = 100; //The maximum number of enemies we should ever spawn from here
+	public float totalEnemyCount = 0; //The total number of enemies we have ever spawned from here
+	private float scale = 1.0f; //The scale the parent object should be
+	private Vector3 scaleVector; //The original scale of the parent object
+	private GravitySourceScript gravitationalObjectScript;
+	private float initialGravity;
+
 
 	//Random generator for enemy locations - creates a donut shape over many iterations
 	public static Vector2 GetRandomInDonut(float min, float max)
@@ -32,22 +39,45 @@ public class EnemyManagerScript : MonoBehaviour {
 		return new Vector2(point3.x,point3.y);
 	}
 
+	//Runs on start
+	void Start () {
+		//Initialize the parent scale vector
+		scaleVector = transform.parent.localScale;
+		//Initialize counter for total enemy spawns
+		totalEnemyCount = totalEnemiesToSpawn;
+
+		//Load the initial gravity and script
+		gravitationalObjectScript = transform.parent.gameObject.GetComponent <GravitySourceScript>();
+		initialGravity = gravitationalObjectScript.maxGravity;
+	}
+
 	//Update is called once per frame
 	void Update () {
 		//If we haven't hit the max enemy count and we randomly decide to spawn an enemy
-		if(Random.value < spawnProbability && enemyCount < maxEnemies)
+		if(Random.value < spawnProbability && enemyCount < maxEnemies && scale > 0f)
 		{
 			//Generate enemy with random spawn point and orientation
 			GameObject enemy = Instantiate(enemyPrefab, GetRandomInDonut(innerSpawnRadius,outerSpawnRadius)+new Vector2(transform.position.x,transform.position.y), Quaternion.Euler(new Vector3(0, 0, Random.Range (0f,360f)))) as GameObject;
 
 			//Set the enemy target and parent
-			EnemyAI enemyCom = enemy.GetComponent<EnemyAI>();
+			EnemyAIScript enemyCom = enemy.GetComponent<EnemyAIScript>();
 			enemyCom.target = target;
 			enemyCom.enemyManager = gameObject;
 
 			//Increment the enemy counter
 			enemyCount++;
+			totalEnemyCount--;
+
+			//Set the scale
+			scale = totalEnemyCount/totalEnemiesToSpawn;
+
+			//Shrink parent object with spawn
+			transform.parent.localScale = new Vector3(scaleVector.x*scale,scaleVector.y*scale,scaleVector.z*scale);
 		}
+
+		//Once the scale hits 0, remove the gravitational effect
+		if(scale==0f)
+			gravitationalObjectScript.maxGravity = initialGravity * scale;
 	}
 
 	//Function which is used by enemies to report that they have died and should be replaced
