@@ -32,6 +32,10 @@ public class EnemyAIScript : MonoBehaviour {
 	private float accuracyFactor; //Accuracy factor is precomputed for efficiency
 	private float accuracyOffset; //Accuracy offset is persistent between shots and determines the direction the weapon is pointed
 
+	private bool hitPlanet = false;
+	private Vector2 hitPlanetPosition;
+	private int reverseCounter = 0;
+	private int reverseCount = 10;
 	//Runs when object starts
 	void Start() {
 		//Precompute accuracy information based on input variables
@@ -44,8 +48,22 @@ public class EnemyAIScript : MonoBehaviour {
 	//Update is called once per frame
 	void Update () {
 		//Calculate a direction for the target
-		Vector3 direction3 = (target.transform.position-transform.position).normalized;
-		Vector2 direction = new Vector2(direction3.x,direction3.y);
+		Vector2 direction;
+		if(hitPlanet)
+		{
+			reverseCounter++;
+			if(reverseCounter> reverseCount)
+			{
+				hitPlanet = false;
+				reverseCounter = 0;
+			}
+			direction = ((new Vector2(transform.position.x,transform.position.y))-hitPlanetPosition).normalized;
+		}
+		else
+		{
+			Vector3 direction3 = (target.transform.position-transform.position).normalized;
+			direction = new Vector2(direction3.x,direction3.y);
+		}
 
 		//Rotate the ship to face the direction of the target
 		transform.rotation = Quaternion.Euler (new Vector3(0f,0f,Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f));
@@ -129,6 +147,11 @@ public class EnemyAIScript : MonoBehaviour {
 				//Play death sound effect
 				audio.Play ();
 			}
+		}
+		else if (objectTag == "Planet")
+		{
+			hitPlanet = true;
+			hitPlanetPosition = collision.gameObject.transform.position;
 		}
 	}
 }

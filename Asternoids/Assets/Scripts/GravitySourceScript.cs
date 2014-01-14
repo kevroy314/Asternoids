@@ -8,6 +8,7 @@ public class GravitySourceScript : MonoBehaviour {
 
 	//Public variables
 	public float maxGravDist = 200f; //Maximum distance the gravity reaches
+	public float minGravDist = 6f; //Minimum distance the gravity reaches (avoids objects being pulled through the planet
 	public float maxGravity = 3f; //Maximum amount of force the gravity can exhert
 	public string[] tagsToEffect = {"Player","Enemy","Bullet"}; //Tags which when present on an object cause that object to be effected by gravity
 
@@ -32,7 +33,7 @@ public class GravitySourceScript : MonoBehaviour {
 			{
 				//Find the distance from the object to the gravity source and check if it's within range
 				float distance = Vector3.Distance (objs[j].transform.position,transform.position);
-				if(distance < maxGravDist)
+				if(distance < maxGravDist && distance > minGravDist)
 					//Attempt to apply the gravity (this can fail if the object is destroyed before it's turn comes to be affected)
 					try{
 						objs[j].rigidbody2D.AddForce ((transform.position-objs[j].transform.position).normalized * (1.0f - distance / maxGravDist) * maxGravity);
