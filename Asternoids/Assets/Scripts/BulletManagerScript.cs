@@ -10,13 +10,16 @@ public class BulletManagerScript : MonoBehaviour {
 	public float destroyDistance = 200f; //Distance from origin at which point a bullet disappears
 	public float damage = 0.1f; //Amount of damage the bullet does when it hits something
 
+	public AudioSource fireAudio;
+	public AudioSource hitAudio;
+
 	//Private variables
 	private Animator anim; //Animator (for observing animation state)
 
 	//When object starts, this runs
 	void Start() {
 		//Play sound effect
-		audio.Play ();
+		fireAudio.Play ();
 
 		//Get animator for animation state monitoring
 		anim = GetComponent<Animator>();
@@ -35,6 +38,7 @@ public class BulletManagerScript : MonoBehaviour {
 	//Triggers at the start of any collisions
 	void OnCollisionEnter2D(Collision2D collision) {
 		//Initiate the bullet hit animation (starts bullet death)
+		hitAudio.Play ();
 		anim.SetBool("BulletHit",true);
 	}
 }

@@ -76,7 +76,8 @@ public class EnemyAIScript : MonoBehaviour {
 			rigidbody2D.velocity *= (1 - (rigidbody2D.velocity.magnitude-maxSpeed)/rigidbody2D.velocity.magnitude);
 
 		//Check if the enemy should be destroyed (based on it's animation state)
-		if(anim.GetCurrentAnimatorStateInfo (0).IsTag ("DestroyObject"))
+
+		if(anim.GetCurrentAnimatorStateInfo (0).IsTag ("DestroyObject") && !audio.isPlaying)
 		{
 			//Report the death to the manager
 			EnemyManagerScript enemyCom = enemyManager.GetComponent<EnemyManagerScript>();

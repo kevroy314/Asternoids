@@ -1,11 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyAIScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterControllerScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\LevelManagerScript.cs" Line="15" Column="34" />
-      <File FileName="Assets\Scripts\CharacterControllerScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemyAIScript.cs" Line="38" Column="31" />
-      <File FileName="Assets\Scripts\GravitySourceScript.cs" Line="36" Column="56" />
+      <File FileName="Assets\Scripts\FollowPlayerScript.cs" Line="24" Column="42" />
+      <File FileName="Assets\Scripts\LevelManagerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CharacterControllerScript.cs" Line="100" Column="46" />
+      <File FileName="Assets\Scripts\EnemyAIScript.cs" Line="45" Column="35" />
+      <File FileName="Assets\Scripts\GravitySourceScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BulletManagerScript.cs" Line="40" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

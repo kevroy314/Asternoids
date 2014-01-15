@@ -23,14 +23,6 @@ public class FollowPlayerScript : MonoBehaviour {
 	private int cameraShakeFrameCount = 10;
 	private int cameraShakeFrameCounter = 0;
 
-	private Animator anim; //For animation state monitoring
-
-	//Run on start
-	void Start () {
-		//Get animator object for state monitoring
-		anim = gameObject.GetComponent<Animator>();
-	}
-
 	//Update is called once per frame
 	void Update () {
 		//Camera follow via linear interpolation
